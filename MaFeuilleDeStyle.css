@@ -1,0 +1,278 @@
+/* ============================================================
+   MaFeuilleDeStyle.css
+   Auteur : Étudiant M2 Ingénierie Pédagogique Multimodale
+   Cours : Web Mobile – Responsive Web Design, D. Bouchard
+   Licence : Création originale à usage pédagogique
+   ============================================================ */
+
+/* ── Reset minimal ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a1a2e;
+  background-color: #f5f0eb;
+}
+
+/* ================================================================
+   MORCEAU DE CODE 4 : Dimensions fluides (mise en page fluide)
+   Source : cours §2.2.1 "Les mises en page fluides"
+   Plutôt qu'une largeur fixe (ex. width: 960px), on utilise
+   width: 100% combiné à max-width pour que le contenu s'adapte
+   à l'espace disponible sans jamais dépasser une largeur confortable.
+   ================================================================ */
+.conteneur {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Navigation ── */
+.nav {
+  background-color: #1a1a2e;
+  padding: 14px 20px;
+}
+
+.nav__inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  color: #f5c518;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+}
+
+.nav__liens {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav__liens a {
+  color: #ccc;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.nav__liens a:hover {
+  color: #f5c518;
+}
+
+/* ── Hero — image de fond ── */
+/*
+   L'image de fond est définie en CSS via background-image.
+   background-size: cover assure qu'elle couvre toute la zone
+   quelle que soit la taille de l'écran.
+   Source image : Unsplash (Hal Gatewood) – Licence Unsplash libre
+*/
+.hero {
+  background-image:
+    linear-gradient(rgba(26, 26, 46, 0.75), rgba(26, 26, 46, 0.75)),
+    url('https://images.unsplash.com/photo-1547658719-da2b51169166?w=1280&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero__titre {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  color: #f5c518;
+}
+
+.hero__sous_titre {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #ddd;
+}
+
+/* ── Sections de contenu ── */
+.section {
+  padding: 50px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section__titre {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.section__intro {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+/* ── Blocs de code ── */
+.bloc_code {
+  background-color: #fff;
+  border: 1px solid #c8c0d8;
+  border-left: 5px solid #7c3aed;
+  border-radius: 4px;
+  margin-bottom: 36px;
+  padding: 20px 24px;
+}
+
+.bloc_code__titre {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.bloc_code__titre span {
+  font-size: 0.85rem;
+  color: #7c3aed;
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+pre {
+  background-color: #f0ecf8;
+  border: 1px solid #d0c4ec;
+  border-radius: 3px;
+  padding: 14px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.88rem;
+  overflow-x: auto;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.bloc_code__justif {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.7;
+}
+
+.bloc_code__justif strong {
+  color: #1a1a2e;
+}
+
+/* ── Image d'illustration ── */
+.illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 20px 0 8px;
+}
+
+.illustration__legende {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Disposition deux colonnes (bureau) ── */
+.deux_colonnes {
+  display: flex;
+  gap: 30px;
+}
+
+.deux_colonnes .colonne_principale {
+  flex: 2;
+}
+
+.deux_colonnes .colonne_secondaire {
+  flex: 1;
+}
+
+/* ── Footer ── */
+.footer {
+  background-color: #1a1a2e;
+  color: #aaa;
+  text-align: center;
+  padding: 24px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 0.82rem;
+}
+
+.footer a {
+  color: #f5c518;
+  text-decoration: none;
+}
+
+/* ================================================================
+   MORCEAU DE CODE 2 : Media query — Mobile (max-width: 480px)
+   Source : cours §5.1 "Largeur maximale"
+   En dessous de 480px (smartphones compacts), la navigation passe
+   en colonne, la mise en page à deux colonnes s'empile verticalement
+   (cours §7.2), et la taille des titres est réduite pour conserver
+   la lisibilité sur un petit écran.
+   ================================================================ */
+@media screen and (max-width: 480px) {
+  .nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav__liens {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hero__titre {
+    font-size: 1.6rem;
+  }
+
+  .hero {
+    padding: 50px 16px;
+  }
+
+  /* Empilement vertical des colonnes (cours §7.2) */
+  .deux_colonnes {
+    flex-direction: column;
+  }
+}
+
+/* ================================================================
+   MORCEAU DE CODE 3 : Media query — Tablette/Bureau (min-width: 768px)
+   Source : cours §5.2 "Largeur minimale" et §5.3 "Intervalle"
+   À partir de 768px (tablette portrait et au-delà), on active
+   la disposition en deux colonnes. Ce breakpoint correspond au
+   seuil indiqué dans le cours (tablettes : 768 à 1024px).
+   ================================================================ */
+@media screen and (min-width: 768px) {
+  .hero__titre {
+    font-size: 2.8rem;
+  }
+
+  .deux_colonnes {
+    flex-direction: row;
+  }
+}

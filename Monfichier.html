@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  MORCEAU DE CODE 1 — Directive viewport                      ║
+    ╚══════════════════════════════════════════════════════════════╝
+    Référence : cours §3.3 et §3.4 (D. Bouchard, Web Mobile RWD)
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    Paramètre width=device-width :
+    La largeur du viewport CSS devient égale à la largeur physique
+    réelle de l'écran (ex. 375px sur smartphone). Sans ce paramètre,
+    le navigateur mobile simule un écran virtuel large (~980px) puis
+    réduit la page, rendant les textes illisibles et les media queries
+    inopérantes. (cours §3.2)
+
+    Paramètre initial-scale=1.0 :
+    Le niveau de zoom initial est fixé à 100 %. La page s'affiche
+    sans agrandissement ni réduction automatique au chargement.
+    (cours §3.4.2)
+
+    Important : cette balise ne rend pas le site responsive à elle
+    seule. Elle fournit au navigateur les informations nécessaires
+    pour appliquer correctement les règles définies en CSS. (cours §3.5)
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Viewport &amp; Media Queries — M2 IPM</title>
+  <link rel="stylesheet" href="MaFeuilleDeStyle.css" />
+</head>
+
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#haut">IPM · RWD</a>
+      <ul class="nav__liens">
+        <li><a href="#choix">Mes choix</a></li>
+        <li><a href="#illustration">Illustration</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ EN-TÊTE avec image de fond définie en CSS ═══ -->
+  <!--
+    L'image de fond est déclarée dans MaFeuilleDeStyle.css
+    via background-image sur la classe .hero, avec background-size: cover
+    pour qu'elle s'adapte à toutes les largeurs d'écran.
+    Source : Unsplash – Hal Gatewood – Licence Unsplash (libre d'utilisation)
+  -->
+  <header class="hero" id="haut">
+    <h1 class="hero__titre">Viewport &amp; Media Queries</h1>
+    <p class="hero__sous_titre">
+      Mes choix techniques dans l'utilisation des directives viewport
+      et media queries — M2 Ingénierie Pédagogique Multimodale
+    </p>
+  </header>
+
+  <!-- ═══ CONTENU PRINCIPAL ═══ -->
+  <main>
+    <section class="section" id="choix">
+      <div class="conteneur">
+
+        <h2 class="section__titre">Mes 4 choix de code commentés</h2>
+        <p class="section__intro">
+          Cette page présente quatre extraits de code issus de ce site.
+          Chaque extrait est accompagné d'une justification de ses
+          paramètres, en lien avec les notions vues en cours
+          (D. Bouchard, <em>Web Mobile — Responsive Web Design</em>).
+        </p>
+
+        <!-- ── BLOC 1 : Directive viewport ── -->
+        <div class="bloc_code">
+          <p class="bloc_code__titre">
+            Choix n°1 — La directive viewport
+            <span>(cours §3.3)</span>
+          </p>
+          <pre>&lt;meta name="viewport"
+  content="width=device-width, initial-scale=1.0" /&gt;</pre>
+          <p class="bloc_code__justif">
+            <strong>Fonction :</strong> Cette balise, placée dans le
+            <code>&lt;head&gt;</code>, indique au navigateur mobile
+            comment adapter la largeur d'affichage à l'écran réel.<br /><br />
+
+            <strong>width=device-width</strong> : la largeur du viewport
+            CSS devient égale à la largeur physique de l'écran. Sans ce
+            paramètre, le navigateur simule un écran virtuel de ~980px
+            puis réduit l'ensemble, rendant les textes illisibles et
+            les media queries inactives.<br /><br />
+
+            <strong>initial-scale=1.0</strong> : le niveau de zoom est
+            fixé à 100 % au chargement de la page, sans agrandissement
+            automatique. <br /><br />
+
+            Comme le souligne le cours (§3.5) : cette balise ne rend
+            pas un site responsive à elle seule, elle fournit simplement
+            au navigateur les informations nécessaires pour appliquer
+            correctement les règles CSS responsives.
+          </p>
+        </div>
+
+        <!-- ── BLOC 2 : Media query max-width 480px ── -->
+        <div class="bloc_code">
+          <p class="bloc_code__titre">
+            Choix n°2 — Media query mobile
+            <span>(cours §5.1)</span>
+          </p>
+          <pre>@media screen and (max-width: 480px) {
+  .nav__inner {
+    flex-direction: column;
+  }
+  .deux_colonnes {
+    flex-direction: column;
+  }
+  .hero__titre {
+    font-size: 1.6rem;
+  }
+}</pre>
+          <p class="bloc_code__justif">
+            <strong>Fonction :</strong> Cette règle s'applique lorsque
+            la largeur de l'écran est inférieure ou égale à 480px,
+            c'est-à-dire sur les smartphones (320 à 480px selon le
+            tableau du cours §1.1).<br /><br />
+
+            <strong>screen</strong> : le type de média ciblé est l'écran,
+            à l'exclusion des médias d'impression (cours §4.2).<br /><br />
+
+            <strong>max-width: 480px</strong> : la condition porte sur
+            la largeur maximale ; les règles contenues ne s'appliquent
+            que si la fenêtre est égale ou plus étroite que ce seuil
+            (cours §5.1).<br /><br />
+
+            Les adaptations produites correspondent à la stratégie
+            d'empilement vertical décrite au §7.2 du cours : les
+            colonnes passent en disposition verticale pour conserver
+            la lisibilité sur petit écran.
+          </p>
+        </div>
+
+        <!-- ── BLOC 3 : Media query min-width 768px ── -->
+        <div class="bloc_code">
+          <p class="bloc_code__titre">
+            Choix n°3 — Media query tablette et bureau
+            <span>(cours §5.2)</span>
+          </p>
+          <pre>@media screen and (min-width: 768px) {
+  .deux_colonnes {
+    flex-direction: row;
+  }
+  .hero__titre {
+    font-size: 2.8rem;
+  }
+}</pre>
+          <p class="bloc_code__justif">
+            <strong>Fonction :</strong> Cette règle s'active à partir
+            de 768px de largeur, soit le seuil correspondant aux
+            tablettes dans le tableau du cours (768 à 1024px, §1.1).<br /><br />
+
+            <strong>min-width: 768px</strong> : la condition porte sur
+            la largeur minimale ; les règles s'appliquent dès que la
+            fenêtre atteint ou dépasse ce seuil (cours §5.2). C'est
+            l'approche inverse du <em>max-width</em> : on enrichit
+            l'affichage au lieu de le simplifier.<br /><br />
+
+            La mise en page passe en deux colonnes côte à côte, ce qui
+            exploite l'espace horizontal disponible sur tablette et
+            bureau. Ce breakpoint à 768px est l'un des "exemples
+            classiques" cités dans le cours (§6.1 : 480px, 768px,
+            1024px, 1280px).
+          </p>
+        </div>
+
+        <!-- ── BLOC 4 : Dimensions fluides ── -->
+        <div class="bloc_code">
+          <p class="bloc_code__titre">
+            Choix n°4 — Dimensions fluides
+            <span>(cours §2.2.1)</span>
+          </p>
+          <pre>.conteneur {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}</pre>
+          <p class="bloc_code__justif">
+            <strong>Fonction :</strong> Ce sont les deux premiers piliers
+            du Responsive Web Design tels que définis dans le cours
+            (§2.2.1 et §2.2.2).<br /><br />
+
+            <strong>width: 100%</strong> : la largeur du conteneur
+            s'adapte à l'espace disponible, plutôt que d'être fixée
+            en pixels (on remplace le <code>width: 960px</code> figé
+            décrit au §1.1 du cours).<br /><br />
+
+            <strong>max-width: 960px</strong> : on fixe néanmoins un
+            plafond pour éviter que les lignes de texte deviennent
+            trop longues sur de très grands écrans.<br /><br />
+
+            <strong>max-width: 100% / height: auto</strong> sur les
+            images : une image ne dépasse jamais son conteneur, et
+            ses proportions sont conservées automatiquement. C'est
+            l'exemple exact du cours (§2.2.2).
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ SECTION ILLUSTRATION ═══ -->
+    <section class="section" id="illustration">
+      <div class="conteneur">
+
+        <div class="deux_colonnes">
+          <div class="colonne_principale">
+            <h2 class="section__titre">Le responsive en pratique</h2>
+            <p class="section__intro">
+              Un même site, consulté sur des appareils différents,
+              doit offrir une expérience lisible et fonctionnelle
+              à chaque fois. C'est l'objectif du Responsive Web Design :
+              une seule base de code, plusieurs contextes d'affichage
+              (cours §2.1).
+            </p>
+            <p style="font-size: 0.95rem; color: #444; line-height: 1.7;">
+              En ingénierie pédagogique multimodale, cette exigence est
+              directement liée à l'accessibilité des dispositifs de
+              formation numérique. Un apprenant peut accéder à une
+              ressource depuis un ordinateur de bureau, une tablette
+              ou un smartphone — l'interface doit s'adapter sans
+              qu'une version spécifique soit nécessaire.
+            </p>
+          </div>
+
+          <div class="colonne_secondaire">
+            <!--
+              IMAGE D'ILLUSTRATION
+              Source : Unsplash
+              Photographe : Hal Gatewood
+              URL : https://unsplash.com/photos/OgvqXGL7XO4
+              Licence : Unsplash License — utilisation libre,
+                        commerciale et non-commerciale, sans attribution
+                        obligatoire (fournie ici par respect des bonnes pratiques)
+            -->
+            <img
+              class="illustration"
+              src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format&fit=crop"
+              alt="Plusieurs appareils numériques (ordinateur, tablette, smartphone) affichant un site web — illustration du design multiécran"
+              width="600"
+              height="400"
+            />
+            <p class="illustration__legende">
+              Hal Gatewood / Unsplash — Licence Unsplash (libre d'utilisation)
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <p>
+      M2 Ingénierie Pédagogique Multimodale · Exercice RWD ·
+      Cours : D. Bouchard, <em>Web Mobile — Responsive Web Design</em>,
+      Université de Lille ·
+      Photo : <a href="https://unsplash.com/photos/OgvqXGL7XO4" target="_blank" rel="noopener">Hal Gatewood / Unsplash</a>
+      (Unsplash License)
+    </p>
+  </footer>
+
+</body>
+</html>
